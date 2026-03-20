@@ -13,25 +13,6 @@ function AppContent() {
   const { status } = useRos();
   const isConnected = status === "connected";
 
-  if (!isConnected) {
-    return (
-      <div className="center-screen">
-        <div className="connect-shell">
-          <div className="connect-card">
-            <div className="connect-title-row">
-              <span className="connect-dot" />
-              <span className="connect-title">ROS Dashboard</span>
-            </div>
-            <p className="connect-subtitle">
-              Esperando conexión con rosbridge para cargar el workspace.
-            </p>
-            <RosStatus />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="app-shell">
       <aside className="app-sidebar">
