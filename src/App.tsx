@@ -10,8 +10,6 @@ import BatteryWidget from "./components/BatteryState";
 import ObstacleViewer3D from "./components/ObstacleViewer3D";
 
 function AppContent() {
-  const { status } = useRos();
-  const isConnected = status === "connected";
 
   return (
     <div className="app-shell">
@@ -57,12 +55,10 @@ function AppContent() {
         <div className="widgets-grid">
           <section className="widget-slot">
             <ObstacleViewer3D
-              rosbridgeUrl="ws://localhost:9090"
               pointCloudTopic="/velodyne_points"
-              localFrameLabel="velodyne"
               maxPoints={10000}
               maxRange={18}
-              pointSize={0.05}
+              pointSize={0.1}
             />
           </section>
 

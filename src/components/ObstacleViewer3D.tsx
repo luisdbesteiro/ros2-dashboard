@@ -535,7 +535,6 @@ function InvalidateBridge({
 
 export default function ObstacleViewer3D({
   pointCloudTopic,
-  localFrameLabel = "velodyne",
   maxPoints = 12000,
   pointSize = 0.05,
   throttleMs = 120,
@@ -864,15 +863,11 @@ export default function ObstacleViewer3D({
                 justifyContent: "flex-end",
               }}
             >
-              <TopInfoPill label="POINTS" value={String(pointCountUi)} />
-              <TopInfoPill
-                label="Z"
-                value={zRangeUi ? `${zRangeUi.min.toFixed(2)} .. ${zRangeUi.max.toFixed(2)}` : "--"}
-              />
               <TopInfoPill
                 label="HZ"
                 value={topicAlive && hzUi > 0 ? hzUi.toFixed(1) : "--"}
               />
+              <TopInfoPill label="MSGS" value={String(messageCountUi)} />
             </div>
           </div>
 
@@ -950,19 +945,15 @@ export default function ObstacleViewer3D({
                     lineHeight: 1.15,
                   }}
                 >
-                  <span style={{ color: "#64748b", fontWeight: 700 }}>ROS</span>
-                  <span style={{ color: "#334155", fontWeight: 700 }}>{rosStatus}</span>
+                  <span style={{ color: "#64748b", fontWeight: 700 }}>POINTS</span>
+                  <span style={{ color: "#334155", fontWeight: 700 }}>{pointCountUi}</span>
 
-                  <span style={{ color: "#64748b", fontWeight: 700 }}>TOPIC</span>
+                  <span style={{ color: "#64748b", fontWeight: 700 }}>Z</span>
                   <span style={{ color: "#334155", fontWeight: 700 }}>
-                    {topicAlive ? "available" : "idle"}
+                    {zRangeUi
+                      ? `${zRangeUi.min.toFixed(2)} .. ${zRangeUi.max.toFixed(2)}`
+                      : "--"}
                   </span>
-
-                  <span style={{ color: "#64748b", fontWeight: 700 }}>LOCAL</span>
-                  <span style={{ color: "#334155", fontWeight: 700 }}>{localFrameLabel}</span>
-
-                  <span style={{ color: "#64748b", fontWeight: 700 }}>MSGS</span>
-                  <span style={{ color: "#334155", fontWeight: 700 }}>{messageCountUi}</span>
                 </div>
               </div>
             )}
